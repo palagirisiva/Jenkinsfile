@@ -12,27 +12,13 @@ pipeline {
                 sh "mvn package"
             }
         }
-        stage('sonarqube analysis') {
-            environment {
-            SCANNER_HOME = tool 'SonarQube'
-            PROJECT_NAME = "Java-maven"
-        }
-        steps {
-            script {
-                withSonarQubeEnv('SonarQube') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=$PROJECT_NAME \
-                    -Dsonar.java.binaries=\"target/classes/\"'''
-                }
-            }
-            }
-        }
         stage('deploy'){
             steps {
-                sh""" sudo cp /var/lib/jenkins/workspace/Java-Project/target/java-tomcat-maven-example.war /opt/tomcat/webapps
-                sudo service tomcat restart
-                """
+                sh""" sudo cp -r /root/.jenkins/workspace/Hello_world_Pipeline_Proj/target /root/apache-tomcat-9.0.63/webapps
+                sudo /root/apache-tomcat-9.0.63/bin/startup.sh
+                """ 
             }
         }
-    }
- }   
-   
+        
+    } 
+}    
