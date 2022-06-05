@@ -14,8 +14,8 @@ pipeline {
         }
         stage('deploy'){
             steps {
-                sh""" sudo cp -r /root/.jenkins/workspace/Hello_world_Pipeline_Proj/target/java-tomcat-maven-example.war /root/apache-tomcat-9.0.63/webapps
-                sudo /root/apache-tomcat-9.0.63/bin/startup.sh
+                sh""" sudo cp -r /root/.jenkins/workspace/Hello_world_Pipeline_Proj/target/java-tomcat-maven-example.war /opt/apache-tomcat-9.0.63/webapps
+                sudo /opt/apache-tomcat-9.0.63/bin/startup.sh
                 """ 
             }
         }
